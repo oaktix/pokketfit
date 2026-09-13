@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-orange: #E37210;
+  --primary-orange-hover: #F2801E;
+  --primary-orange-subtle: rgba(227, 114, 16, 0.12);
+  --bg-page: #F8F6F4;
+  --surface-card: #FFFFFF;
+  --surface-card-inset: #F0EDE8;
+  --text-primary: #1A140F;
+  --text-secondary: #706760;
+  --border-subtle: rgba(0, 0, 0, 0.07);
+}
+
+.dark {
+  --primary-orange: #E37210;
+  --primary-orange-hover: #F2801E;
+  --primary-orange-subtle: rgba(227, 114, 16, 0.18);
+  --bg-page: #0A0705;
+  --surface-card: #16120E;
+  --surface-card-inset: #1E1914;
+  --text-primary: #FAF8F5;
+  --text-secondary: #9E968F;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+}
+
+body {
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Emil Kowalski UI Polish & Micro-Interactions */
+button, a, .clickable {
+  transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), background-color 160ms ease, border-color 160ms ease, opacity 160ms ease;
+}
+
+button:active, a:active, .clickable:active {
+  transform: scale(0.97);
+}
+
+/* Custom modern scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(150, 150, 150, 0.25);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(150, 150, 150, 0.4);
+}
+
+/* Glassmorphic backdrop filters */
+.glass-panel {
+  background: rgba(22, 18, 14, 0.78);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.light .glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* Flame glow pulse */
+@keyframes flame-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 12px rgba(227, 114, 16, 0.5));
+  }
+  50% {
+    filter: drop-shadow(0 0 24px rgba(249, 115, 22, 0.85));
+  }
+}
+
+.flame-active {
+  animation: flame-glow 3s infinite ease-in-out;
+}
