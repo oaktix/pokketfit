@@ -22,9 +22,16 @@ import { getBMILabel } from '@/lib/engine/bmi';
 import { registerPushSubscription } from '@/lib/notifications/push-client';
 import { TactileButton } from '@/components/motion/MotionPrimitives';
 
+import { useAuth } from '@/components/auth/AuthProvider';
+import { usePWAInstall } from '@/lib/pwa/usePWAInstall';
+import { useTheme } from '@/components/theme/ThemeProvider';
+
 export default function ProfilePage() {
   const [store, setStore] = useState(getLocalStore());
   const { currentUser, offlineQueue } = store;
+  const { theme, setTheme } = useTheme();
+  const { signOut } = useAuth();
+  const { isStandalone, triggerManualPrompt } = usePWAInstall();
 
   const [wakeUpTime, setWakeUpTime] = useState(currentUser.wakeUpTime);
   const [sleepTime, setSleepTime] = useState(currentUser.sleepTime);
@@ -62,7 +69,7 @@ export default function ProfilePage() {
     const dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(store, null, 2));
     const downloadAnchor = document.createElement('a');
     downloadAnchor.setAttribute('href', dataStr);
-    downloadAnchor.setAttribute('download', `fitpocket_data_export_${currentUser.id}.json`);
+    downloadAnchor.setAttribute('download', `pokketfit_data_export_${currentUser.id}.json`);
     document.body.appendChild(downloadAnchor);
     downloadAnchor.click();
     downloadAnchor.remove();
@@ -94,6 +101,57 @@ export default function ProfilePage() {
           </div>
         </div>
 
+        {/* Appearance & Theme Mode (Dark, Light, System) */}
+        <div className="bg-[#16120E] border border-[#2A241E] rounded-3xl p-5 shadow-card-dark space-y-3">
+          <div className="flex items-center justify-between">
+            <h3 className="text-sm font-bold text-white">Appearance & Theme</h3>
+            <span className="text-[10px] text-[#E37210] font-bold uppercase tracking-wider bg-[#E37210]/15 px-2.5 py-0.5 rounded-full">
+              {theme}
+            </span>
+          </div>
+          <p className="text-xs text-[#8A8279]">
+            Select your preferred visual mode or match your device's system settings automatically.
+          </p>
+
+          <div className="grid grid-cols-3 gap-2 pt-1">
+            <button
+              onClick={() => setTheme('dark')}
+              className={`py-2 px-3 rounded-xl text-xs font-bold flex items-center justify-center space-x-1.5 transition-all ${
+                theme === 'dark'
+                  ? 'bg-[#E37210] text-white shadow-glow-subtle'
+                  : 'bg-[#1E1914] text-[#8A8279] border border-[#2A241E] hover:text-white'
+              }`}
+            >
+              <Moon className="w-3.5 h-3.5" />
+              <span>Dark</span>
+            </button>
+
+            <button
+              onClick={() => setTheme('light')}
+              className={`py-2 px-3 rounded-xl text-xs font-bold flex items-center justify-center space-x-1.5 transition-all ${
+                theme === 'light'
+                  ? 'bg-[#E37210] text-white shadow-glow-subtle'
+                  : 'bg-[#1E1914] text-[#8A8279] border border-[#2A241E] hover:text-white'
+              }`}
+            >
+              <Sun className="w-3.5 h-3.5" />
+              <span>Light</span>
+            </button>
+
+            <button
+              onClick={() => setTheme('system')}
+              className={`py-2 px-3 rounded-xl text-xs font-bold flex items-center justify-center space-x-1.5 transition-all ${
+                theme === 'system'
+                  ? 'bg-[#E37210] text-white shadow-glow-subtle'
+                  : 'bg-[#1E1914] text-[#8A8279] border border-[#2A241E] hover:text-white'
+              }`}
+            >
+              <Settings className="w-3.5 h-3.5" />
+              <span>System</span>
+            </button>
+          </div>
+        </div>
+
         {/* Schedule & Sleep Windows (PRD Section 20) */}
         <div className="bg-[#16120E] border border-[#2A241E] rounded-3xl p-5 shadow-card-dark space-y-3">
           <div className="flex items-center justify-between">
@@ -105,7 +163,7 @@ export default function ProfilePage() {
             )}
           </div>
           <p className="text-xs text-[#8A8279]">
-            FitPocket respects your sleep window and suppresses all notifications between bedtime and wake-up.
+            Pokketfit respects your sleep window and suppresses all notifications between bedtime and wake-up.
           </p>
 
           <div className="grid grid-cols-2 gap-3 pt-1">
@@ -193,9 +251,30 @@ export default function ProfilePage() {
           </p>
         </div>
 
+        {/* Install PWA Option (Browser visitors only) */}
+        {!isStandalone && (
+          <div className="bg-[#16120E] border border-white/[0.08] rounded-3xl p-5 shadow-card-dark flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              <div className="w-10 h-10 rounded-2xl bg-[#E37210]/15 flex items-center justify-center text-[#E37210]">
+                <Download className="w-5 h-5" />
+              </div>
+              <div>
+                <h4 className="text-xs font-bold text-white">Install PokketFit App</h4>
+                <p className="text-[11px] text-[#8A8279]">Add to home screen for instant daily access</p>
+              </div>
+            </div>
+            <button
+              onClick={triggerManualPrompt}
+              className="py-2 px-3.5 rounded-xl bg-gradient-to-r from-[#E37210] to-[#F2801E] text-white text-xs font-bold shadow-glow-subtle active:scale-95"
+            >
+              Install
+            </button>
+          </div>
+        )}
+
         {/* Account & Privacy Compliance (PRD Section 4, 32 & 35) */}
         <div className="bg-[#16120E] border border-[#2A241E] rounded-3xl p-5 shadow-card-dark space-y-3">
-          <h3 className="text-sm font-bold text-white">Privacy & Data Management</h3>
+          <h3 className="text-sm font-bold text-white">Privacy & Account Control</h3>
           <p className="text-xs text-[#8A8279]">
             Under NDPR and GDPR principles, you maintain full sovereignty over your physical health and fitness data.
           </p>
@@ -207,17 +286,27 @@ export default function ProfilePage() {
             >
               <div className="flex items-center space-x-2">
                 <Download className="w-4 h-4 text-[#E37210]" />
-                <span>Export Complete Fitness History (JSON)</span>
+                <span>Export Fitness History (JSON)</span>
+              </div>
+            </button>
+
+            <button
+              onClick={() => signOut()}
+              className="w-full py-2.5 px-4 rounded-xl bg-[#1E1914] hover:bg-[#2A241E] border border-white/[0.08] text-xs font-bold text-white flex items-center justify-between active:scale-95 transition-all"
+            >
+              <div className="flex items-center space-x-2">
+                <LogOut className="w-4 h-4 text-[#E37210]" />
+                <span>Sign Out of PokketFit</span>
               </div>
             </button>
 
             <button
               onClick={handleResetData}
-              className="w-full py-2.5 px-4 rounded-xl bg-red-950/30 hover:bg-red-950/50 border border-red-900/40 text-xs font-semibold text-red-300 flex items-center justify-between active:scale-95 transition-all"
+              className="w-full py-2 px-4 rounded-xl bg-red-950/20 hover:bg-red-950/40 border border-red-900/30 text-[11px] font-semibold text-red-400 flex items-center justify-between active:scale-95 transition-all"
             >
               <div className="flex items-center space-x-2">
-                <Trash2 className="w-4 h-4 text-red-400" />
-                <span>Delete Account & Reset Local Storage</span>
+                <Trash2 className="w-3.5 h-3.5 text-red-400" />
+                <span>Reset Local Data</span>
               </div>
             </button>
           </div>
@@ -225,8 +314,7 @@ export default function ProfilePage() {
 
         {/* Health Disclaimer Footer */}
         <div className="text-[11px] text-[#706760] text-center pt-2 pb-4 space-y-1">
-          <p>Pokketfit Coach v1.0.0 • Production Build</p>
-          <p>HealthRich Fitness visual identity inspired application.</p>
+          <p>Pokketfit Coach v1.0.0 • Production Candidate</p>
         </div>
       </div>
     </MobileShell>

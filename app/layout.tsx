@@ -20,6 +20,10 @@ export const viewport: Viewport = {
   userScalable: false,
 };
 
+import { ThemeProvider } from '@/components/theme/ThemeProvider';
+import { AuthProvider } from '@/components/auth/AuthProvider';
+import PWAInstallModal from '@/components/pwa/PWAInstallModal';
+
 export default function RootLayout({
   children,
 }: {
@@ -36,7 +40,12 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-[100dvh] antialiased bg-[#0A0705] text-[#FAF8F5] font-sans selection:bg-[#E37210]/30 selection:text-[#FDBA74]">
-        {children}
+        <ThemeProvider>
+          <AuthProvider>
+            {children}
+            <PWAInstallModal />
+          </AuthProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

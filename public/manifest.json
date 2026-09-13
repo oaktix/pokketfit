@@ -2,7 +2,7 @@
   "name": "Pokketfit",
   "short_name": "Pokketfit",
   "description": "Your personal fitness coach in your pocket with personalized workouts, Nigerian nutrition, and habit tracking.",
-  "start_url": "/dashboard",
+  "start_url": "/login",
   "display": "standalone",
   "background_color": "#0A0705",
   "theme_color": "#E37210",

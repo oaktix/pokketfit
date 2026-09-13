@@ -15,7 +15,7 @@ module.exports = {
           200: '#FED7AA',
           300: '#FDBA74',
           400: '#FB923C',
-          500: '#E37210', // HealthRich Fitness Anchor Orange
+          500: '#E37210', // Pokketfit Energy Orange
           600: '#D25E09',
           700: '#A44407',
           800: '#83340A',
