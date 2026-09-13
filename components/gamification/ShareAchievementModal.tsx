@@ -93,11 +93,11 @@ export default function ShareAchievementModal({
                 </span>
               </div>
               <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-[#E37210]/20 text-[#FDBA74] border border-[#E37210]/30">
-                ATHLETE VERIFIED
+                MEMBER VERIFIED
               </span>
             </div>
 
-            {/* Athlete Details */}
+            {/* Member Details */}
             <div className="flex items-center space-x-3 mb-4">
               <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-[#E37210] to-[#F97316] p-0.5">
                 <div className="w-full h-full rounded-[14px] bg-[#110D0A] flex items-center justify-center text-sm font-bold text-white">
@@ -150,7 +150,7 @@ export default function ShareAchievementModal({
           <div className="mt-4 space-y-2">
             <TactileButton
               onClick={handleNativeShare}
-              className="w-full py-3 rounded-2xl bg-gradient-to-r from-[#E37210] to-[#F2801E] text-white text-xs font-bold flex items-center justify-center space-x-2 shadow-glow-orange"
+              className="w-full py-3 rounded-2xl bg-[#E37210] hover:bg-[#F2801E] text-white text-xs font-bold flex items-center justify-center space-x-2 transition-colors"
             >
               <Share2 className="w-4 h-4" />
               <span>Share to Socials or Stories</span>

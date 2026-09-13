@@ -145,25 +145,6 @@ export default function LandingHeader() {
                   <ArrowRight className="w-4 h-4" />
                 </Link>
 
-                {!isStandalone && (
-                  <button
-                    onClick={() => {
-                      setMobileMenuOpen(false);
-                      triggerManualPrompt();
-                    }}
-                    className="w-full min-h-[44px] flex items-center justify-center space-x-2 text-xs font-bold text-[#FDBA74] bg-[#1E1914] border border-white/[0.08] rounded-2xl py-2.5"
-                  >
-                    <span>Install PokketFit App</span>
-                  </button>
-                )}
-
-                <Link
-                  href="/dashboard"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="w-full min-h-[44px] flex items-center justify-center text-xs font-semibold text-[#8A8279] hover:text-white py-2"
-                >
-                  Direct Dashboard Preview →
-                </Link>
               </div>
             </div>
           </motion.div>

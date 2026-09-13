@@ -234,7 +234,7 @@ export default function LeaderboardPage() {
           /* LEAGUE COMPETITORS LIST (Duolingo & Strava inspired, clean HealthRich styling) */
           <div className="space-y-2">
             <div className="flex items-center justify-between px-2 text-[10px] text-[#8A8279] uppercase font-bold tracking-wider">
-              <span>Athlete</span>
+              <span>Member</span>
               <span>Points</span>
             </div>
 

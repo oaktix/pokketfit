@@ -269,7 +269,7 @@ export default function AdminCmsPage() {
               )}
             </div>
             <p className="text-xs text-[#8A8279] mb-4 leading-relaxed">
-              Configure XP values awarded for every verified healthy habit. Changes immediately govern all active athlete plans.
+              Configure XP values awarded for every verified healthy habit. Changes immediately govern all active member plans.
             </p>
 
             <form onSubmit={handleSavePointsConfig} className="grid grid-cols-1 sm:grid-cols-2 gap-4">

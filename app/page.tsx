@@ -38,15 +38,7 @@ export default function LandingPage() {
       {/* ========================================================================= */}
       <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 px-4 sm:px-6 z-10">
         <div className="max-w-4xl mx-auto text-center space-y-6">
-          {/* Confident badge without fake pulsing dot */}
-          <div className="inline-flex items-center space-x-2 bg-[#16120E] border border-white/[0.08] px-3.5 py-1.5 rounded-full text-xs font-semibold text-[#D5D1CB]">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#E37210]" />
-            <span className="text-[11px] font-medium text-[#D5D1CB]">
-              Personal Fitness Coach
-            </span>
-          </div>
-
-          {/* Solid high-contrast headline: weight and scale contrast, no gradient text clip */}
+          {/* Solid high-contrast headline */}
           <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white leading-[1.08] max-w-3xl mx-auto">
             A fitness coach that fits in your pocket.
           </h1>
@@ -66,12 +58,6 @@ export default function LandingPage() {
               <ArrowRight className="w-4 h-4" />
             </Link>
 
-            <Link
-              href="/dashboard"
-              className="w-full sm:w-auto min-h-[48px] px-6 py-3 rounded-xl bg-[#16120E] hover:bg-[#1E1914] border border-white/[0.08] text-sm font-semibold text-[#D5D1CB] hover:text-white flex items-center justify-center transition-colors"
-            >
-              <span>Explore PokketFit</span>
-            </Link>
           </div>
 
           {/* ===================================================================== */}
@@ -481,11 +467,10 @@ export default function LandingPage() {
               <Flame className="w-3.5 h-3.5 fill-white" />
             </div>
             <span className="font-bold text-white">POKKETFIT</span>
-            <span>• Your Personal Fitness Coach</span>
           </div>
 
           <div className="flex items-center space-x-4">
-            <Link href="/login" className="hover:text-white transition-colors">Athlete Login</Link>
+            <Link href="/login" className="hover:text-white transition-colors">Member Login</Link>
             <Link href="/onboarding" className="hover:text-white transition-colors">Get Started</Link>
             <Link href="/admin" className="hover:text-white transition-colors">Admin CMS</Link>
           </div>

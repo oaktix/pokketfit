@@ -133,7 +133,7 @@ export default function LoginPage() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="athlete@domain.com"
+                placeholder="your@email.com"
                 className="w-full bg-[#110D0A] border border-[#2A241E] rounded-2xl pl-10 pr-4 py-3 text-xs text-white placeholder-[#706760] focus:outline-none focus:border-[#E37210]"
               />
               <Mail className="w-4 h-4 text-[#8A8279] absolute left-3.5 top-3.5" />
@@ -175,7 +175,7 @@ export default function LoginPage() {
 
         <div className="mt-5 pt-4 border-t border-[#2A241E] text-center">
           <p className="text-xs text-[#8A8279]">
-            Don't have an athlete account?{' '}
+            Don't have an account?{' '}
             <Link href="/onboarding" className="text-[#E37210] font-bold hover:underline">
               Sign Up Now
             </Link>
@@ -185,7 +185,7 @@ export default function LoginPage() {
 
       {/* Footer */}
       <div className="text-center text-[11px] text-[#706760] z-10">
-        FitPocket Personal Fitness • Powered by Supabase & Cloudinary
+        FitPocket • Wellness Coaching Tool
       </div>
     </div>
   );
