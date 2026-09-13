@@ -139,7 +139,7 @@ export default function AdminCmsPage() {
 
         <button
           onClick={() => setIsAddExerciseOpen(true)}
-          className="py-2.5 px-4 rounded-xl bg-gradient-to-r from-[#E37210] to-[#F2801E] text-white text-xs font-bold flex items-center space-x-1.5 shadow-glow-subtle active:scale-95 transition-all"
+          className="py-2.5 px-4 rounded-xl bg-[#E37210] hover:bg-[#F2801E] text-white text-xs font-bold flex items-center space-x-1.5 transition-colors"
         >
           <Plus className="w-4 h-4" />
           <span>Add New Exercise</span>
@@ -150,7 +150,7 @@ export default function AdminCmsPage() {
       <div className="flex space-x-2 my-4 border-b border-[#2A241E] pb-2 overflow-x-auto">
         <button
           onClick={() => setActiveTab('exercises')}
-          className={`py-2 px-4 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
+          className={`py-2 px-4 rounded-xl text-xs font-bold transition-colors whitespace-nowrap ${
             activeTab === 'exercises'
               ? 'bg-[#E37210] text-white'
               : 'text-[#8A8279] hover:text-white'
@@ -160,7 +160,7 @@ export default function AdminCmsPage() {
         </button>
         <button
           onClick={() => setActiveTab('meals')}
-          className={`py-2 px-4 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
+          className={`py-2 px-4 rounded-xl text-xs font-bold transition-colors whitespace-nowrap ${
             activeTab === 'meals'
               ? 'bg-[#E37210] text-white'
               : 'text-[#8A8279] hover:text-white'
@@ -170,7 +170,7 @@ export default function AdminCmsPage() {
         </button>
         <button
           onClick={() => setActiveTab('points_leagues')}
-          className={`py-2 px-4 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
+          className={`py-2 px-4 rounded-xl text-xs font-bold transition-colors whitespace-nowrap ${
             activeTab === 'points_leagues'
               ? 'bg-[#E37210] text-white'
               : 'text-[#8A8279] hover:text-white'
@@ -180,7 +180,7 @@ export default function AdminCmsPage() {
         </button>
         <button
           onClick={() => setActiveTab('broadcast')}
-          className={`py-2 px-4 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
+          className={`py-2 px-4 rounded-xl text-xs font-bold transition-colors whitespace-nowrap ${
             activeTab === 'broadcast'
               ? 'bg-[#E37210] text-white'
               : 'text-[#8A8279] hover:text-white'
@@ -256,7 +256,7 @@ export default function AdminCmsPage() {
       {/* POINTS & LEAGUES CONFIGURATION CMS (PRD Section 4 & 25) */}
       {activeTab === 'points_leagues' && (
         <div className="space-y-6">
-          <div className="bg-[#16120E] border border-[#2A241E] rounded-3xl p-6 shadow-card-dark">
+          <div className="bg-[#16120E] border border-[#2A241E] rounded-2xl p-6">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center space-x-2">
                 <Sliders className="w-5 h-5 text-[#E37210]" />
@@ -316,7 +316,7 @@ export default function AdminCmsPage() {
               <div className="sm:col-span-2 pt-2">
                 <TactileButton
                   type="submit"
-                  className="w-full py-3 rounded-2xl bg-gradient-to-r from-[#E37210] to-[#F2801E] text-white text-xs font-bold shadow-glow-orange"
+                  className="w-full py-3 rounded-2xl bg-[#E37210] hover:bg-[#F2801E] text-white text-xs font-bold transition-colors"
                 >
                   Save Point Rule Configurations
                 </TactileButton>
@@ -325,7 +325,7 @@ export default function AdminCmsPage() {
           </div>
 
           {/* Configurable Leagues List */}
-          <div className="bg-[#16120E] border border-[#2A241E] rounded-3xl p-6 shadow-card-dark">
+          <div className="bg-[#16120E] border border-[#2A241E] rounded-2xl p-6">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center space-x-2">
                 <Trophy className="w-5 h-5 text-yellow-500" />
@@ -364,7 +364,7 @@ export default function AdminCmsPage() {
 
       {/* BROADCAST ANNOUNCEMENTS */}
       {activeTab === 'broadcast' && (
-        <div className="bg-[#16120E] border border-[#2A241E] rounded-3xl p-6 max-w-lg space-y-4">
+        <div className="bg-[#16120E] border border-[#2A241E] rounded-2xl p-6 max-w-lg space-y-4">
           <div className="flex items-center space-x-2 text-sm font-bold text-white">
             <Radio className="w-5 h-5 text-[#E37210]" />
             <span>Broadcast Push Notification to Users</span>
@@ -383,7 +383,7 @@ export default function AdminCmsPage() {
 
           <button
             onClick={handleSendBroadcast}
-            className="w-full py-3 rounded-2xl bg-gradient-to-r from-[#E37210] to-[#F2801E] text-white text-xs font-bold shadow-glow-subtle active:scale-95 transition-all"
+            className="w-full py-3 rounded-2xl bg-[#E37210] hover:bg-[#F2801E] text-white text-xs font-bold transition-colors"
           >
             Dispatch In-App Notification
           </button>
@@ -400,7 +400,7 @@ export default function AdminCmsPage() {
       {/* CREATE EXERCISE MODAL */}
       {isAddExerciseOpen && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-          <div className="bg-[#16120E] border border-[#2A241E] rounded-3xl p-6 max-w-md w-full space-y-4">
+          <div className="bg-[#16120E] border border-[#2A241E] rounded-2xl p-6 max-w-md w-full space-y-4">
             <h3 className="text-lg font-bold text-white">Add Owner-Approved Exercise</h3>
 
             <form onSubmit={handleCreateExercise} className="space-y-3">
@@ -463,7 +463,7 @@ export default function AdminCmsPage() {
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 py-2.5 rounded-xl bg-gradient-to-r from-[#E37210] to-[#F2801E] text-white text-xs font-bold shadow-glow-subtle"
+                  className="flex-1 py-2.5 rounded-xl bg-[#E37210] hover:bg-[#F2801E] text-white text-xs font-bold transition-colors"
                 >
                   Publish Movement
                 </button>

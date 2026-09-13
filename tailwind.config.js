@@ -20,7 +20,6 @@ module.exports = {
           700: '#A44407',
           800: '#83340A',
           900: '#6C2B0B',
-          glow: '#F97316',
         },
         obsidian: {
           950: '#070504', // Darkest Lacquer
@@ -48,10 +47,8 @@ module.exports = {
         sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
       },
       boxShadow: {
-        'glow-orange': '0 8px 32px -4px rgba(227, 114, 16, 0.28)',
-        'glow-subtle': '0 4px 20px -2px rgba(227, 114, 16, 0.12)',
-        'card-dark': '0 10px 30px -5px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.06)',
-        'card-light': '0 10px 30px -5px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.05)',
+        'card-dark': '0 4px 20px -2px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.07)',
+        'card-light': '0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.06)',
       },
     },
   },

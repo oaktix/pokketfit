@@ -86,8 +86,8 @@ export default function ProfilePage() {
     <MobileShell>
       <div className="p-4 space-y-4">
         {/* Profile Card Header (Matching Mockup 3ce028c7d69cd2a286623018e8e9d41e.webp) */}
-        <div className="bg-[#16120E] border border-[#2A241E] rounded-3xl p-5 shadow-card-dark flex items-center space-x-4">
-          <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-[#E37210] to-[#F97316] p-0.5 shadow-glow-subtle">
+        <div className="bg-[#16120E] border border-[#2A241E] rounded-2xl p-5 flex items-center space-x-4">
+          <div className="w-16 h-16 rounded-full bg-[#E37210] p-0.5">
             <div className="w-full h-full rounded-full bg-[#110D0A] flex items-center justify-center text-xl font-extrabold text-white">
               {currentUser.name.split(' ').map((n) => n[0]).join('')}
             </div>
@@ -102,7 +102,7 @@ export default function ProfilePage() {
         </div>
 
         {/* Appearance & Theme Mode (Dark, Light, System) */}
-        <div className="bg-[#16120E] border border-[#2A241E] rounded-3xl p-5 shadow-card-dark space-y-3">
+        <div className="bg-[#16120E] border border-[#2A241E] rounded-2xl p-5 space-y-3">
           <div className="flex items-center justify-between">
             <h3 className="text-sm font-bold text-white">Appearance & Theme</h3>
             <span className="text-[10px] text-[#E37210] font-bold uppercase tracking-wider bg-[#E37210]/15 px-2.5 py-0.5 rounded-full">
@@ -116,9 +116,9 @@ export default function ProfilePage() {
           <div className="grid grid-cols-3 gap-2 pt-1">
             <button
               onClick={() => setTheme('dark')}
-              className={`py-2 px-3 rounded-xl text-xs font-bold flex items-center justify-center space-x-1.5 transition-all ${
+              className={`py-2 px-3 rounded-xl text-xs font-bold flex items-center justify-center space-x-1.5 transition-colors ${
                 theme === 'dark'
-                  ? 'bg-[#E37210] text-white shadow-glow-subtle'
+                  ? 'bg-[#E37210] text-white'
                   : 'bg-[#1E1914] text-[#8A8279] border border-[#2A241E] hover:text-white'
               }`}
             >
@@ -128,9 +128,9 @@ export default function ProfilePage() {
 
             <button
               onClick={() => setTheme('light')}
-              className={`py-2 px-3 rounded-xl text-xs font-bold flex items-center justify-center space-x-1.5 transition-all ${
+              className={`py-2 px-3 rounded-xl text-xs font-bold flex items-center justify-center space-x-1.5 transition-colors ${
                 theme === 'light'
-                  ? 'bg-[#E37210] text-white shadow-glow-subtle'
+                  ? 'bg-[#E37210] text-white'
                   : 'bg-[#1E1914] text-[#8A8279] border border-[#2A241E] hover:text-white'
               }`}
             >
@@ -140,9 +140,9 @@ export default function ProfilePage() {
 
             <button
               onClick={() => setTheme('system')}
-              className={`py-2 px-3 rounded-xl text-xs font-bold flex items-center justify-center space-x-1.5 transition-all ${
+              className={`py-2 px-3 rounded-xl text-xs font-bold flex items-center justify-center space-x-1.5 transition-colors ${
                 theme === 'system'
-                  ? 'bg-[#E37210] text-white shadow-glow-subtle'
+                  ? 'bg-[#E37210] text-white'
                   : 'bg-[#1E1914] text-[#8A8279] border border-[#2A241E] hover:text-white'
               }`}
             >
@@ -153,7 +153,7 @@ export default function ProfilePage() {
         </div>
 
         {/* Schedule & Sleep Windows (PRD Section 20) */}
-        <div className="bg-[#16120E] border border-[#2A241E] rounded-3xl p-5 shadow-card-dark space-y-3">
+        <div className="bg-[#16120E] border border-[#2A241E] rounded-2xl p-5 space-y-3">
           <div className="flex items-center justify-between">
             <h3 className="text-sm font-bold text-white">Sleep & Reminder Schedule</h3>
             {savedSuccess && (
@@ -189,14 +189,14 @@ export default function ProfilePage() {
 
           <button
             onClick={handleSaveTimes}
-            className="w-full py-2.5 rounded-xl bg-[#1E1914] hover:bg-[#2A241E] border border-[#2A241E] text-xs font-bold text-[#FAF8F5] active:scale-95 transition-all"
+            className="w-full py-2.5 rounded-xl bg-[#1E1914] hover:bg-[#2A241E] border border-[#2A241E] text-xs font-bold text-[#FAF8F5] active:scale-95 transition-colors"
           >
             Update Schedule
           </button>
         </div>
 
         {/* Web Push Notifications (PRD Section 18 & 24) */}
-        <div className="bg-[#16120E] border border-[#2A241E] rounded-3xl p-5 shadow-card-dark space-y-3">
+        <div className="bg-[#16120E] border border-[#2A241E] rounded-2xl p-5 space-y-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
               <Bell className="w-4 h-4 text-[#E37210]" />
@@ -224,7 +224,7 @@ export default function ProfilePage() {
             <TactileButton
               onClick={handleEnablePush}
               disabled={pushStatus === 'loading'}
-              className="w-full py-2.5 rounded-xl bg-gradient-to-r from-[#E37210] to-[#F2801E] text-white text-xs font-bold flex items-center justify-center space-x-2 shadow-glow-subtle"
+              className="w-full py-2.5 rounded-xl bg-[#E37210] hover:bg-[#F2801E] text-white text-xs font-bold transition-colors flex items-center justify-center space-x-2"
             >
               {pushStatus === 'loading' ? (
                 <Loader2 className="w-4 h-4 animate-spin text-white" />
@@ -239,7 +239,7 @@ export default function ProfilePage() {
         </div>
 
         {/* Offline & Sync Status (PRD Section 28 & 45) */}
-        <div className="bg-[#16120E] border border-[#2A241E] rounded-3xl p-5 shadow-card-dark space-y-2">
+        <div className="bg-[#16120E] border border-[#2A241E] rounded-2xl p-5 space-y-2">
           <div className="flex items-center justify-between">
             <h3 className="text-sm font-bold text-white">Offline Sync Queue</h3>
             <span className="text-xs text-emerald-400 bg-emerald-950/60 border border-emerald-800/80 px-2 py-0.5 rounded-full font-semibold">
@@ -253,9 +253,9 @@ export default function ProfilePage() {
 
         {/* Install PWA Option (Browser visitors only) */}
         {!isStandalone && (
-          <div className="bg-[#16120E] border border-white/[0.08] rounded-3xl p-5 shadow-card-dark flex items-center justify-between">
+          <div className="bg-[#16120E] border border-white/[0.08] rounded-2xl p-5 flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 rounded-2xl bg-[#E37210]/15 flex items-center justify-center text-[#E37210]">
+              <div className="w-10 h-10 rounded-2xl bg-[#1E1914] flex items-center justify-center text-[#E37210]">
                 <Download className="w-5 h-5" />
               </div>
               <div>
@@ -265,7 +265,7 @@ export default function ProfilePage() {
             </div>
             <button
               onClick={triggerManualPrompt}
-              className="py-2 px-3.5 rounded-xl bg-gradient-to-r from-[#E37210] to-[#F2801E] text-white text-xs font-bold shadow-glow-subtle active:scale-95"
+              className="py-2 px-3.5 rounded-xl bg-[#E37210] hover:bg-[#F2801E] text-white text-xs font-bold transition-colors"
             >
               Install
             </button>
@@ -273,7 +273,7 @@ export default function ProfilePage() {
         )}
 
         {/* Account & Privacy Compliance (PRD Section 4, 32 & 35) */}
-        <div className="bg-[#16120E] border border-[#2A241E] rounded-3xl p-5 shadow-card-dark space-y-3">
+        <div className="bg-[#16120E] border border-[#2A241E] rounded-2xl p-5 space-y-3">
           <h3 className="text-sm font-bold text-white">Privacy & Account Control</h3>
           <p className="text-xs text-[#8A8279]">
             Under NDPR and GDPR principles, you maintain full sovereignty over your physical health and fitness data.
@@ -282,7 +282,7 @@ export default function ProfilePage() {
           <div className="space-y-2 pt-1">
             <button
               onClick={handleExportData}
-              className="w-full py-2.5 px-4 rounded-xl bg-[#110D0A] hover:bg-[#1E1914] border border-[#2A241E] text-xs font-semibold text-[#D5D1CB] flex items-center justify-between active:scale-95 transition-all"
+              className="w-full py-2.5 px-4 rounded-xl bg-[#110D0A] hover:bg-[#1E1914] border border-[#2A241E] text-xs font-semibold text-[#D5D1CB] flex items-center justify-between active:scale-95 transition-colors"
             >
               <div className="flex items-center space-x-2">
                 <Download className="w-4 h-4 text-[#E37210]" />
@@ -292,7 +292,7 @@ export default function ProfilePage() {
 
             <button
               onClick={() => signOut()}
-              className="w-full py-2.5 px-4 rounded-xl bg-[#1E1914] hover:bg-[#2A241E] border border-white/[0.08] text-xs font-bold text-white flex items-center justify-between active:scale-95 transition-all"
+              className="w-full py-2.5 px-4 rounded-xl bg-[#1E1914] hover:bg-[#2A241E] border border-white/[0.08] text-xs font-bold text-white flex items-center justify-between active:scale-95 transition-colors"
             >
               <div className="flex items-center space-x-2">
                 <LogOut className="w-4 h-4 text-[#E37210]" />
@@ -302,7 +302,7 @@ export default function ProfilePage() {
 
             <button
               onClick={handleResetData}
-              className="w-full py-2 px-4 rounded-xl bg-red-950/20 hover:bg-red-950/40 border border-red-900/30 text-[11px] font-semibold text-red-400 flex items-center justify-between active:scale-95 transition-all"
+              className="w-full py-2 px-4 rounded-xl bg-red-950/20 hover:bg-red-950/40 border border-red-900/30 text-[11px] font-semibold text-red-400 flex items-center justify-between active:scale-95 transition-colors"
             >
               <div className="flex items-center space-x-2">
                 <Trash2 className="w-3.5 h-3.5 text-red-400" />

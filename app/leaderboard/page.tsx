@@ -82,7 +82,7 @@ export default function LeaderboardPage() {
         </div>
 
         {/* CURRENT LEAGUE HERO CARD */}
-        <div className="bg-[#16120E] border border-[#2A241E] rounded-3xl p-5 relative overflow-hidden shadow-card-dark">
+        <div className="bg-[#16120E] border border-[#2A241E] rounded-2xl p-5 relative overflow-hidden">
           {/* Subtle warm ambient halo */}
           <div 
             className="absolute -top-10 -right-10 w-40 h-40 rounded-full blur-3xl opacity-20 pointer-events-none"
@@ -91,7 +91,7 @@ export default function LeaderboardPage() {
 
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center space-x-3">
-              <div className="w-12 h-12 rounded-2xl bg-[#110D0A] border border-[#2A241E] flex items-center justify-center text-2xl shadow-glow-subtle">
+              <div className="w-12 h-12 rounded-2xl bg-[#110D0A] border border-[#2A241E] flex items-center justify-center text-2xl">
                 {currentTier.icon}
               </div>
               <div>
@@ -129,7 +129,7 @@ export default function LeaderboardPage() {
                   initial={{ width: 0 }}
                   animate={{ width: `${progressToNextLeaguePercent}%` }}
                   transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
-                  className="h-full rounded-full bg-gradient-to-r from-[#E37210] to-[#F97316] shadow-glow-orange"
+                  className="h-full rounded-full bg-[#E37210]"
                 />
               </div>
             </div>
@@ -184,9 +184,9 @@ export default function LeaderboardPage() {
           <div className="flex space-x-1.5 bg-[#16120E] p-1 rounded-2xl border border-[#2A241E]">
             <button
               onClick={() => setCycle('this_week')}
-              className={`py-1.5 px-3 rounded-xl text-xs font-bold transition-all ${
+              className={`py-1.5 px-3 rounded-xl text-xs font-bold transition-colors ${
                 cycle === 'this_week'
-                  ? 'bg-[#E37210] text-white shadow-glow-subtle'
+                  ? 'bg-[#E37210] text-white'
                   : 'text-[#8A8279] hover:text-white'
               }`}
             >
@@ -194,9 +194,9 @@ export default function LeaderboardPage() {
             </button>
             <button
               onClick={() => setCycle('last_week')}
-              className={`py-1.5 px-3 rounded-xl text-xs font-bold transition-all ${
+              className={`py-1.5 px-3 rounded-xl text-xs font-bold transition-colors ${
                 cycle === 'last_week'
-                  ? 'bg-[#E37210] text-white shadow-glow-subtle'
+                  ? 'bg-[#E37210] text-white'
                   : 'text-[#8A8279] hover:text-white'
               }`}
             >
@@ -215,7 +215,7 @@ export default function LeaderboardPage() {
 
         {/* EMPTY STATE HANDLING (PRD Section 4: If not enough users, show friendly warm-up notice) */}
         {!isSeededMode ? (
-          <div className="bg-[#16120E] border border-[#2A241E] rounded-3xl p-8 text-center space-y-3 shadow-card-dark">
+          <div className="bg-[#16120E] border border-[#2A241E] rounded-2xl p-8 text-center space-y-3">
             <div className="w-14 h-14 mx-auto rounded-full bg-[#1E1914] flex items-center justify-center text-2xl">
               🌱
             </div>
@@ -246,9 +246,9 @@ export default function LeaderboardPage() {
                 return (
                   <StaggerItem key={competitor.id}>
                     <div
-                      className={`p-3.5 rounded-2xl flex items-center justify-between border transition-all ${
+                      className={`p-3.5 rounded-2xl flex items-center justify-between border transition-colors ${
                         isUser
-                          ? 'bg-gradient-to-r from-[#E37210]/20 via-[#1E1914] to-[#16120E] border-[#E37210]/60 shadow-glow-subtle ring-1 ring-[#E37210]/40'
+                          ? 'bg-[#16120E] border-[#E37210]/40'
                           : 'bg-[#16120E] border-[#2A241E] hover:border-[#383129]'
                       }`}
                     >
@@ -272,7 +272,7 @@ export default function LeaderboardPage() {
                         {/* Avatar */}
                         <div className={`w-9 h-9 rounded-xl p-0.5 flex items-center justify-center font-bold text-xs ${
                           isUser 
-                            ? 'bg-gradient-to-tr from-[#E37210] to-[#F97316] text-white shadow-glow-subtle' 
+                            ? 'bg-[#E37210] text-white' 
                             : 'bg-[#1E1914] border border-[#2A241E] text-[#C7BFB5]'
                         }`}>
                           {competitor.avatarInitials}

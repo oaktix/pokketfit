@@ -92,7 +92,7 @@ export default function ProgressPage() {
         </div>
 
         {/* CARD 1: OVERALL GOAL PROGRESS BAR (PRD Section 22: Capped at 100%) */}
-        <div className="bg-[#16120E] border border-[#2A241E] rounded-3xl p-5 space-y-4 shadow-card-dark">
+        <div className="bg-[#16120E] border border-[#2A241E] rounded-2xl p-5 space-y-4">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold text-white uppercase tracking-wider">
               Target Goal Progress
@@ -104,7 +104,7 @@ export default function ProgressPage() {
 
           <div className="w-full bg-[#1E1914] h-3 rounded-full overflow-hidden border border-[#2A241E]">
             <div
-              className="bg-gradient-to-r from-[#E37210] to-[#F97316] h-full rounded-full transition-all duration-500 shadow-glow-orange"
+              className="bg-[#E37210] h-full rounded-full transition-colors duration-200"
               style={{ width: `${progressPercent}%` }}
             />
           </div>
@@ -126,7 +126,7 @@ export default function ProgressPage() {
         </div>
 
         {/* CARD 2: MONTHLY CHECK-IN FORM (PRD Section 22) */}
-        <div className="bg-[#16120E] border border-[#2A241E] rounded-3xl p-5 shadow-card-dark space-y-3">
+        <div className="bg-[#16120E] border border-[#2A241E] rounded-2xl p-5 space-y-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
               <Scale className="w-5 h-5 text-[#E37210]" />
@@ -155,7 +155,7 @@ export default function ProgressPage() {
 
             <button
               onClick={handleMonthlyCheckIn}
-              className="py-2.5 px-5 rounded-2xl bg-gradient-to-r from-[#E37210] to-[#F2801E] text-white text-xs font-bold shadow-glow-subtle active:scale-95 transition-all"
+              className="py-2.5 px-5 rounded-2xl bg-[#E37210] hover:bg-[#F2801E] text-white text-xs font-bold transition-colors"
             >
               Record Check-in
             </button>
@@ -170,7 +170,7 @@ export default function ProgressPage() {
         </div>
 
         {/* CARD 3: BMI & WEIGHT LOG TIMELINE */}
-        <div className="bg-[#16120E] border border-[#2A241E] rounded-3xl p-5 shadow-card-dark space-y-3">
+        <div className="bg-[#16120E] border border-[#2A241E] rounded-2xl p-5 space-y-3">
           <div className="text-sm font-bold text-white">Assessment Timeline</div>
 
           <div className="space-y-2 pt-1">

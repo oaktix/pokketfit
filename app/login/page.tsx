@@ -87,13 +87,10 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-[100dvh] flex flex-col items-center justify-between bg-[#0A0705] text-[#FAF8F5] px-6 py-10 relative overflow-hidden">
-      {/* Background ambient lighting */}
-      <div className="absolute top-[-100px] left-1/2 transform -translate-x-1/2 w-[350px] h-[350px] bg-[#E37210]/15 rounded-full blur-[100px] pointer-events-none" />
-
       {/* Header */}
       <div className="w-full flex items-center justify-between z-10 max-w-sm">
         <Link href="/" className="flex items-center space-x-2">
-          <div className="w-9 h-9 rounded-2xl bg-gradient-to-tr from-[#E37210] to-[#F97316] flex items-center justify-center shadow-glow-orange">
+          <div className="w-9 h-9 rounded-2xl bg-[#E37210] flex items-center justify-center">
             <Flame className="w-5 h-5 text-white fill-white" />
           </div>
           <div>
@@ -110,7 +107,7 @@ export default function LoginPage() {
       </div>
 
       {/* Main Login Card */}
-      <div className="w-full max-w-sm bg-[#16120E] border border-[#2A241E] rounded-3xl p-6 shadow-card-dark z-10 my-auto">
+      <div className="w-full max-w-sm bg-[#16120E] border border-[#2A241E] rounded-2xl p-6 shadow-card-dark z-10 my-auto">
         <div className="text-center mb-6">
           <h1 className="text-2xl font-black text-white tracking-tight">Welcome Back</h1>
           <p className="text-xs text-[#8A8279] mt-1">
@@ -163,7 +160,7 @@ export default function LoginPage() {
           <TactileButton
             type="submit"
             disabled={loading}
-            className="w-full py-3.5 px-6 rounded-2xl bg-gradient-to-r from-[#E37210] to-[#F2801E] text-white font-bold flex items-center justify-center space-x-2 shadow-glow-orange mt-2"
+            className="w-full py-3.5 px-6 rounded-2xl bg-[#E37210] hover:bg-[#F2801E] text-white font-bold flex items-center justify-center space-x-2 transition-colors mt-2"
           >
             {loading ? (
               <Loader2 className="w-4 h-4 animate-spin text-white" />

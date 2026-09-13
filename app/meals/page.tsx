@@ -79,7 +79,7 @@ export default function MealsNutritionPage() {
         </div>
 
         {/* Fresh Fruits Section (PRD Section 19) */}
-        <div className="bg-[#16120E] border border-[#2A241E] rounded-3xl p-5 shadow-card-dark space-y-3">
+        <div className="bg-[#16120E] border border-[#2A241E] rounded-2xl p-5 space-y-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
               <Apple className="w-5 h-5 text-emerald-400" />
@@ -119,9 +119,9 @@ export default function MealsNutritionPage() {
             <button
               key={type}
               onClick={() => setSelectedMealType(type)}
-              className={`px-3.5 py-1.5 rounded-full text-xs font-semibold capitalize transition-all ${
+              className={`px-3.5 py-1.5 rounded-full text-xs font-semibold capitalize transition-colors ${
                 selectedMealType === type
-                  ? 'bg-[#E37210] text-white shadow-glow-subtle'
+                  ? 'bg-[#E37210] text-white'
                   : 'bg-[#16120E] text-[#8A8279] border border-[#2A241E]'
               }`}
             >
@@ -135,7 +135,7 @@ export default function MealsNutritionPage() {
           {filteredMeals.map((meal) => (
             <div
               key={meal.id}
-              className="bg-[#16120E] border border-[#2A241E] rounded-3xl p-5 shadow-card-dark space-y-3"
+              className="bg-[#16120E] border border-[#2A241E] rounded-2xl p-5 space-y-3"
             >
               <div className="flex items-center justify-between">
                 <span className="text-[10px] uppercase font-bold text-[#E37210] bg-[#E37210]/15 px-2.5 py-0.5 rounded-full">
@@ -156,15 +156,15 @@ export default function MealsNutritionPage() {
               {/* Macro breakdown pills */}
               <div className="grid grid-cols-3 gap-2 bg-[#110D0A] p-2.5 rounded-2xl border border-[#2A241E] text-center">
                 <div>
-                  <div className="text-xs font-black text-[#3B82F6]">{meal.carbsGrams}g</div>
+                  <div className="text-xs font-black text-[#FAF8F5]">{meal.carbsGrams}g</div>
                   <div className="text-[9px] text-[#8A8279] uppercase font-semibold">Carbs</div>
                 </div>
                 <div>
-                  <div className="text-xs font-black text-[#F59E0B]">{meal.fatGrams}g</div>
+                  <div className="text-xs font-black text-[#FAF8F5]">{meal.fatGrams}g</div>
                   <div className="text-[9px] text-[#8A8279] uppercase font-semibold">Fats</div>
                 </div>
                 <div>
-                  <div className="text-xs font-black text-[#10B981]">{meal.proteinGrams}g</div>
+                  <div className="text-xs font-black text-[#FAF8F5]">{meal.proteinGrams}g</div>
                   <div className="text-[9px] text-[#8A8279] uppercase font-semibold">Protein</div>
                 </div>
               </div>

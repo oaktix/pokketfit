@@ -35,7 +35,7 @@ export default function PWAInstallModal() {
 
           {/* App Brand Presentation */}
           <div className="flex items-center space-x-3.5 mb-4">
-            <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-[#E37210] to-[#F97316] flex items-center justify-center shadow-glow-orange shrink-0">
+            <div className="w-12 h-12 rounded-2xl bg-[#E37210] flex items-center justify-center shrink-0">
               <Flame className="w-7 h-7 text-white fill-white" />
             </div>
             <div>
@@ -103,14 +103,14 @@ export default function PWAInstallModal() {
             {isIOS ? (
               <button
                 onClick={dismiss}
-                className="w-full min-h-[46px] rounded-2xl bg-gradient-to-r from-[#E37210] to-[#F2801E] text-white text-xs font-bold shadow-glow-orange active:scale-[0.98] transition-all"
+                className="w-full min-h-[46px] rounded-2xl bg-[#E37210] hover:bg-[#F2801E] text-white text-xs font-bold transition-colors"
               >
                 Got It, Thanks
               </button>
             ) : (
               <button
                 onClick={install}
-                className="w-full min-h-[46px] rounded-2xl bg-gradient-to-r from-[#E37210] to-[#F2801E] hover:from-[#EA7A15] hover:to-[#F88B2A] text-white text-xs font-bold flex items-center justify-center space-x-2 shadow-glow-orange active:scale-[0.98] transition-all"
+                className="w-full min-h-[46px] rounded-2xl bg-[#E37210] hover:bg-[#F2801E] text-white text-xs font-bold flex items-center justify-center space-x-2 transition-colors"
               >
                 <Download className="w-4 h-4" />
                 <span>Install PokketFit</span>

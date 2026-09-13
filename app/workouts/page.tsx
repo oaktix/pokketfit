@@ -45,9 +45,9 @@ export default function WorkoutsIndexPage() {
         </div>
 
         {/* Today's Active Session Banner */}
-        <div className="bg-gradient-to-r from-[#E37210]/20 via-[#E37210]/10 to-[#16120E] border border-[#E37210]/40 rounded-3xl p-5 shadow-glow-subtle">
+        <div className="bg-[#16120E] border border-[#E37210]/30 rounded-2xl p-5">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#E37210] bg-[#E37210]/20 px-2 py-0.5 rounded-full">
+            <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#E37210] bg-[#1E1914] border border-[#E37210]/30 px-2 py-0.5 rounded-full">
               Today's Focus
             </span>
             <div className="flex items-center space-x-1 text-xs text-[#FDBA74]">
@@ -65,31 +65,31 @@ export default function WorkoutsIndexPage() {
 
           <Link
             href={`/workouts/${store.currentPlan.assignedWorkout.id}`}
-            className="w-full py-3 rounded-2xl bg-gradient-to-r from-[#E37210] to-[#F2801E] text-white text-xs font-bold flex items-center justify-center space-x-2 shadow-glow-orange hover:brightness-110 active:scale-95 transition-all"
+            className="w-full py-3 rounded-xl bg-[#E37210] hover:bg-[#F2801E] text-white text-xs font-semibold flex items-center justify-center space-x-2 transition-colors"
           >
             <Play className="w-4 h-4 fill-white" />
             <span>Launch Interactive Workout Player</span>
           </Link>
         </div>
 
-        {/* Safety Note Alert (PRD Section 17) */}
-        <div className="bg-[#16120E] border border-amber-500/25 p-3.5 rounded-2xl flex items-start space-x-3 text-xs text-amber-200/90">
-          <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+        {/* Safety Note Alert */}
+        <div className="bg-[#16120E] border border-white/[0.08] p-3.5 rounded-xl flex items-start space-x-3 text-xs text-[#FAF8F5]">
+          <AlertTriangle className="w-4 h-4 text-[#E37210] shrink-0 mt-0.5" />
           <span>
             <strong>Safety Guidance:</strong> Mild muscle fatigue can occur during exercise. Stop immediately if you experience sharp, severe or unusual pain and seek professional guidance.
           </span>
         </div>
 
-        {/* Category Horizontal Filter Pill Tabs */}
+        {/* Category Filter Tabs */}
         <div className="flex space-x-2 overflow-x-auto pb-1 scrollbar-none">
           {categories.map((cat) => (
             <button
               key={cat.id}
               onClick={() => setSelectedCategory(cat.id)}
-              className={`px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all ${
+              className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-colors ${
                 selectedCategory === cat.id
-                  ? 'bg-[#E37210] text-white shadow-glow-subtle'
-                  : 'bg-[#16120E] text-[#8A8279] border border-[#2A241E] hover:text-white'
+                  ? 'bg-[#E37210] text-white'
+                  : 'bg-[#16120E] text-[#8A8279] border border-white/[0.08] hover:text-white'
               }`}
             >
               {cat.label}
@@ -102,7 +102,7 @@ export default function WorkoutsIndexPage() {
           {filteredExercises.map((ex) => (
             <div
               key={ex.id}
-              className="bg-[#16120E] border border-[#2A241E] rounded-2xl p-4 transition-all hover:border-[#3F3730]"
+              className="bg-[#16120E] border border-[#2A241E] rounded-2xl p-4 hover:border-[#3F3730] transition-colors"
             >
               <div className="flex items-center justify-between mb-1.5">
                 <h4 className="text-sm font-bold text-white">{ex.name}</h4>

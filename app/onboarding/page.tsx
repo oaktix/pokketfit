@@ -197,7 +197,7 @@ export default function OnboardingWizard() {
             {[1, 2, 3, 4, 5, 6].map((i) => (
               <div
                 key={i}
-                className={`h-1.5 rounded-full transition-all duration-300 ${
+                className={`h-1.5 rounded-full transition-colors duration-300 ${
                   i === step
                     ? 'w-6 bg-[#E37210]'
                     : i < step
@@ -392,7 +392,7 @@ export default function OnboardingWizard() {
                 <button
                   key={g.id}
                   onClick={() => setSelectedGoal(g.id as GoalType)}
-                  className={`w-full text-left p-3.5 rounded-2xl border transition-all flex items-center justify-between ${
+                  className={`w-full text-left p-3.5 rounded-2xl border transition-colors flex items-center justify-between ${
                     selectedGoal === g.id
                       ? 'bg-[#E37210]/15 border-[#E37210] text-white'
                       : 'bg-[#16120E] border-[#2A241E] text-[#C7BFB5] hover:border-[#3F3730]'
@@ -530,7 +530,7 @@ export default function OnboardingWizard() {
                     onClick={() => setFitnessLevel(lvl)}
                     className={`py-2.5 rounded-xl border text-xs font-semibold capitalize transition-all ${
                       fitnessLevel === lvl
-                        ? 'bg-[#E37210] border-[#E37210] text-white shadow-glow-subtle'
+                ? 'bg-[#E37210] border-[#E37210] text-white'
                         : 'bg-[#16120E] border-[#2A241E] text-[#8A8279]'
                     }`}
                   >
@@ -604,7 +604,7 @@ export default function OnboardingWizard() {
             className={`w-full py-3.5 px-6 rounded-2xl font-bold flex items-center justify-center space-x-2 transition-all ${
               step === 1 && !otpVerified
                 ? 'bg-[#2A241E] text-[#8A8279] cursor-not-allowed'
-                : 'bg-gradient-to-r from-[#E37210] to-[#F2801E] text-white shadow-glow-orange hover:brightness-110 active:scale-[0.98]'
+                : 'bg-[#E37210] text-white hover:brightness-110 transition-colors'
             }`}
           >
             <span>{step === 1 && !otpSent ? 'Send Verification OTP' : 'Continue'}</span>
@@ -613,7 +613,7 @@ export default function OnboardingWizard() {
         ) : (
           <button
             onClick={handleComplete}
-            className="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-[#E37210] to-[#F2801E] text-white font-bold flex items-center justify-center space-x-2 shadow-glow-orange hover:brightness-110 active:scale-[0.98] transition-all"
+            className="w-full py-4 px-6 rounded-2xl bg-[#E37210] hover:bg-[#F2801E] text-white font-bold flex items-center justify-center space-x-2 transition-colors"
           >
             <Flame className="w-5 h-5 fill-white" />
             <span>Generate My Personal Plan</span>

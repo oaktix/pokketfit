@@ -56,7 +56,7 @@ const ICONS_CONFIG: FloatingIconConfig[] = [
     xOffset: -6,
     rotation: -8,
     opacity: 0.15,
-    colorClass: 'text-cyan-400',
+    colorClass: 'text-[#E37210]/20',
   },
   {
     Icon: Flame,
@@ -82,7 +82,7 @@ const ICONS_CONFIG: FloatingIconConfig[] = [
     xOffset: 10,
     rotation: -14,
     opacity: 0.16,
-    colorClass: 'text-emerald-400',
+    colorClass: 'text-[#E37210]/20',
   },
   {
     Icon: Heart,
@@ -95,7 +95,7 @@ const ICONS_CONFIG: FloatingIconConfig[] = [
     xOffset: 8,
     rotation: 10,
     opacity: 0.14,
-    colorClass: 'text-rose-400',
+    colorClass: 'text-[#E37210]/20',
   },
   {
     Icon: Trophy,
@@ -108,7 +108,7 @@ const ICONS_CONFIG: FloatingIconConfig[] = [
     xOffset: -10,
     rotation: -10,
     opacity: 0.16,
-    colorClass: 'text-amber-400',
+    colorClass: 'text-[#E37210]/20',
   },
   {
     Icon: Activity,
@@ -121,7 +121,7 @@ const ICONS_CONFIG: FloatingIconConfig[] = [
     xOffset: 6,
     rotation: 8,
     opacity: 0.12,
-    colorClass: 'text-orange-300',
+    colorClass: 'text-[#E37210]/20',
   },
   {
     Icon: Timer,
@@ -134,7 +134,7 @@ const ICONS_CONFIG: FloatingIconConfig[] = [
     xOffset: -8,
     rotation: -12,
     opacity: 0.14,
-    colorClass: 'text-[#FDBA74]',
+    colorClass: 'text-[#E37210]/20',
   },
   {
     Icon: UtensilsCrossed,
@@ -147,7 +147,7 @@ const ICONS_CONFIG: FloatingIconConfig[] = [
     xOffset: -6,
     rotation: 16,
     opacity: 0.14,
-    colorClass: 'text-orange-400',
+    colorClass: 'text-[#E37210]/20',
   },
   {
     Icon: Footprints,
@@ -160,7 +160,7 @@ const ICONS_CONFIG: FloatingIconConfig[] = [
     xOffset: 6,
     rotation: -6,
     opacity: 0.13,
-    colorClass: 'text-neutral-400',
+    colorClass: 'text-[#E37210]/20',
   },
   {
     Icon: CheckCircle2,
@@ -173,7 +173,7 @@ const ICONS_CONFIG: FloatingIconConfig[] = [
     xOffset: 6,
     rotation: 6,
     opacity: 0.14,
-    colorClass: 'text-emerald-400',
+    colorClass: 'text-[#E37210]/20',
   },
   {
     Icon: Sparkles,
@@ -186,7 +186,7 @@ const ICONS_CONFIG: FloatingIconConfig[] = [
     xOffset: -6,
     rotation: 18,
     opacity: 0.18,
-    colorClass: 'text-amber-300',
+    colorClass: 'text-[#E37210]/20',
   },
 ];
 
