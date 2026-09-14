@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Bell, X, Check, Flame, Droplets, Dumbbell, Apple, Sparkles, ExternalLink } from 'lucide-react';
 import Link from 'next/link';
+import { playNotificationSound } from '@/lib/notifications/sound';
 
 export interface NotificationItem {
   id: string;
@@ -61,6 +62,12 @@ interface NotificationDrawerProps {
 
 export default function NotificationDrawer({ isOpen, onClose }: NotificationDrawerProps) {
   const [notifications, setNotifications] = useState<NotificationItem[]>(INITIAL_NOTIFICATIONS);
+
+  React.useEffect(() => {
+    if (isOpen) {
+      playNotificationSound();
+    }
+  }, [isOpen]);
 
   const markAllAsRead = () => {
     setNotifications((prev) => prev.map((n) => ({ ...n, read: true })));

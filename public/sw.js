@@ -9,6 +9,7 @@ self.addEventListener('push', function (event) {
       icon: payload.icon || '/icon-192.png',
       badge: '/icon-192.png',
       vibrate: [100, 50, 100],
+      sound: '/notification.wav',
       data: {
         url: payload.url || '/dashboard',
         taskId: payload.taskId,
@@ -26,6 +27,7 @@ self.addEventListener('push', function (event) {
       self.registration.showNotification('Pokketfit Coach', {
         body: text,
         icon: '/icon-192.png',
+        sound: '/notification.wav',
         data: { url: '/dashboard' }
       })
     );

@@ -6,6 +6,7 @@ import { Trophy, Flame, Zap, Sparkles, Share2, X, Check, Award } from 'lucide-re
 import confetti from 'canvas-confetti';
 import { TactileButton, ScaleIn, NumberCountUp } from '../motion/MotionPrimitives';
 import { UserProfile, LeagueTier } from '@/lib/types';
+import { playNotificationSound } from '@/lib/notifications/sound';
 
 interface CelebrationModalProps {
   isOpen: boolean;
@@ -32,6 +33,7 @@ export default function CelebrationModal({
 }: CelebrationModalProps) {
   React.useEffect(() => {
     if (isOpen) {
+      playNotificationSound();
       confetti({
         particleCount: 75,
         spread: 70,

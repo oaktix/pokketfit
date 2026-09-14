@@ -24,6 +24,7 @@ import { TactileButton } from '@/components/motion/MotionPrimitives';
 
 import { useAuth } from '@/components/auth/AuthProvider';
 import { useTheme } from '@/components/theme/ThemeProvider';
+import { playNotificationSound } from '@/lib/notifications/sound';
 import InstallSettingsButton from '@/components/mobile/InstallSettingsButton';
 
 export default function ProfilePage() {
@@ -43,6 +44,7 @@ export default function ProfilePage() {
     setPushMessage('');
     const res = await registerPushSubscription(currentUser.id);
     if (res.success) {
+      playNotificationSound();
       setPushStatus('enabled');
       setPushMessage('Web Push notifications enabled for this device!');
     } else {
