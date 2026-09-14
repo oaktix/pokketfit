@@ -6,7 +6,8 @@ import { Trophy, Flame, Zap, Sparkles, Share2, X, Check, Award } from 'lucide-re
 import confetti from 'canvas-confetti';
 import { TactileButton, ScaleIn, NumberCountUp } from '../motion/MotionPrimitives';
 import { UserProfile, LeagueTier } from '@/lib/types';
-import { playNotificationSound } from '@/lib/notifications/sound';
+import MilestoneCard from './MilestoneCard';
+import { playSound } from '@/lib/notifications/sound';
 
 interface CelebrationModalProps {
   isOpen: boolean;
@@ -33,7 +34,7 @@ export default function CelebrationModal({
 }: CelebrationModalProps) {
   React.useEffect(() => {
     if (isOpen) {
-      playNotificationSound();
+      playSound('applause');
       confetti({
         particleCount: 75,
         spread: 70,
@@ -127,6 +128,20 @@ export default function CelebrationModal({
               </div>
             )}
           </motion.div>
+
+          {/* Shareable Milestone Card */}
+          <div className="w-full overflow-hidden rounded-2xl shadow-2xl ring-1 ring-[#E37210]/20">
+            <MilestoneCard
+              title={title}
+              subtitle={subtitle}
+              pointsEarned={pointsEarned}
+              streakCount={streakCount}
+              badgeIcon={badgeIcon}
+              leagueName={leagueName}
+              userName="Fitness Athlete"
+              userInitials="FA"
+            />
+          </div>
 
           {/* Action CTAs */}
           <div className="space-y-2">

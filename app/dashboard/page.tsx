@@ -28,6 +28,7 @@ import { recordPointEvent, calculateWeeklyPoints } from '@/lib/engine/points-led
 import { getLeagueTierForPoints } from '@/lib/engine/leagues';
 import { AppStoreState } from '@/lib/storage/store';
 import HydrationTracker from '@/components/dashboard/HydrationTracker';
+import { playSound } from '@/lib/notifications/sound';
 import CelebrationModal from '@/components/gamification/CelebrationModal';
 import NotificationDrawer from '@/components/notifications/NotificationDrawer';
 import { 
@@ -110,6 +111,7 @@ export default function DashboardPage() {
 
     setStore(updatedStore);
     saveLocalStore(updatedStore);
+    playSound('splash');
     triggerToast(targetJustMet ? 'Hydration Target Achieved!' : `+${amountLiters * 1000}ml Logged`, pointsAwarded);
   };
 
@@ -141,6 +143,7 @@ export default function DashboardPage() {
       );
       updatedEvents = [newEvent, ...updatedEvents];
       triggerToast(`Logged ${mealKey}`, pointsConfig.mealPoints);
+      playSound('munch');
     }
 
     const updatedStore = {
@@ -179,6 +182,7 @@ export default function DashboardPage() {
       );
       updatedEvents = [newEvent, ...updatedEvents];
       triggerToast(`Logged ${currentPlan.fruit.item.name}`, pointsConfig.fruitPoints);
+      playSound('munch');
     }
 
     const updatedStore = {

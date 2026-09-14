@@ -27,7 +27,7 @@ self.addEventListener('push', function (event) {
       self.registration.showNotification('Pokketfit Coach', {
         body: text,
         icon: '/icon-192.png',
-        sound: '/notification.wav',
+      sound: payload.sound ? '/' + payload.sound + '.wav' : '/notification.wav',
         data: { url: '/dashboard' }
       })
     );

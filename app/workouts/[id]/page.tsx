@@ -17,6 +17,7 @@ import {
 import confetti from 'canvas-confetti';
 import { getLocalStore, saveLocalStore, queueOfflineMutation } from '@/lib/storage/store';
 import { calculatePointsReward, evaluateMilestoneBadges } from '@/lib/engine/gamification';
+import { playSound } from '@/lib/notifications/sound';
 import { recordPointEvent } from '@/lib/engine/points-ledger';
 import CelebrationModal from '@/components/gamification/CelebrationModal';
 import { TactileButton } from '@/components/motion/MotionPrimitives';
@@ -116,6 +117,7 @@ export default function WorkoutPlayerPage({ params }: { params: { id: string } }
       pointsEarned: earnedPoints,
     });
 
+    playSound('applause');
     setIsCompletedModalOpen(true);
   };
 
