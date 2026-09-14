@@ -78,3 +78,20 @@ button:active, a:active, .clickable:active {
   background: #FFFFFF;
   border: 1px solid rgba(0, 0, 0, 0.06);
 }
+
+/* Light mode overrides for all common surface/text colors */
+html.light .bg-\[\#16120E\] { background-color: #FFFFFF !important; border-color: rgba(0,0,0,0.08) !important; }
+html.light .bg-\[\#110D0A\] { background-color: #F0EDE8 !important; }
+html.light .bg-\[\#160D0A\] { background-color: #F8F6F4 !important; }
+html.light .bg-\[\#0A0705\] { background-color: #F8F6F4 !important; }
+html.light .bg-\[\#1E1914\] { background-color: #F0EDE8 !important; border-color: rgba(0,0,0,0.06) !important; }
+html.light .text-\[\#FAF8F5\] { color: #1A140F !important; }
+html.light .text-\[\#C7BFB5\] { color: #3F3730 !important; }
+html.light .text-\[\#A8A096\] { color: #706760 !important; }
+html.light .text-\[\#8A8279\] { color: #706760 !important; }
+html.light .text-\[\#706760\] { color: #706760 !important; }
+html.light .text-\[\#9E968F\] { color: #706760 !important; }
+html.light .border-\[\#2A241E\] { border-color: rgba(0,0,0,0.08) !important; }
+html.light .border-\[\#1E1914\] { border-color: rgba(0,0,0,0.08) !important; }
+html.light .shadow-card-dark { box-shadow: 0 4px 20px rgba(0,0,0,0.08) !important; }
+html.light .shadow-glow-orange { box-shadow: 0 4px 20px rgba(227,114,16,0.15) !important; }
