@@ -6,6 +6,7 @@ import { Trophy, Flame, Zap, Sparkles, Share2, X, Check, Award } from 'lucide-re
 import confetti from 'canvas-confetti';
 import { TactileButton, ScaleIn, NumberCountUp } from '../motion/MotionPrimitives';
 import { UserProfile, LeagueTier } from '@/lib/types';
+import html2canvas from 'html2canvas';
 import MilestoneCard from './MilestoneCard';
 import { playSound } from '@/lib/notifications/sound';
 
@@ -130,7 +131,7 @@ export default function CelebrationModal({
           </motion.div>
 
           {/* Shareable Milestone Card */}
-          <div className="w-full overflow-hidden rounded-2xl shadow-2xl ring-1 ring-[#E37210]/20">
+          <div id={`milestone-card-${title.replace(/\s+/g, '-').toLowerCase()}`} className="w-full overflow-hidden rounded-2xl shadow-2xl ring-1 ring-[#E37210]/20">
             <MilestoneCard
               title={title}
               subtitle={subtitle}
@@ -147,7 +148,28 @@ export default function CelebrationModal({
           <div className="space-y-2">
             {onShare && (
               <TactileButton
-                onClick={onShare}
+                onClick={async () => {
+                  try {
+                    const cardEl = document.getElementById('milestone-card-' + title.replace(/\s+/g, '-').toLowerCase());
+                    if (cardEl) {
+                      const canvas = await html2canvas(cardEl as HTMLElement, { scale: 2, backgroundColor: null });
+                      const dataUrl = canvas.toDataURL('image/png');
+                      const blob = await (await fetch(dataUrl)).blob();
+                      const file = new File([blob], 'pokketfit-milestone.png', { type: 'image/png' });
+                      if (navigator.share) {
+                        await navigator.share({ title: title, text: subtitle, files: [file] });
+                      } else {
+                        const a = document.createElement('a');
+                        a.href = dataUrl;
+                        a.download = 'pokketfit-milestone.png';
+                        a.click();
+                      }
+                    }
+                  } catch {
+                    // Fallback to parent share handler
+                    onShare();
+                  }
+                }}
                 className="w-full py-3 rounded-2xl bg-gradient-to-r from-[#E37210] to-[#F2801E] text-white text-xs font-bold flex items-center justify-center space-x-2 shadow-glow-orange"
               >
                 <Share2 className="w-4 h-4" />
