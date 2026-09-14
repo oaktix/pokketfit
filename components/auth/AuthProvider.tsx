@@ -30,6 +30,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [isPWA, setIsPWA] = useState<boolean>(false);
   const router = useRouter();
   const pathname = usePathname();
+  const sessionCheckedRef = React.useRef(false);
+  const authStateFiredRef = React.useRef(false);
 
   useEffect(() => {
     const pwaMode = isRunningAsPWA();
@@ -47,7 +49,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     supabase.auth.getSession().then(({ data: { session: initialSession } }) => {
       setSession(initialSession);
       setUser(initialSession?.user ?? null);
-      setIsLoading(false);
+      sessionCheckedRef.current = true;
+      if (sessionCheckedRef.current && authStateFiredRef.current) {
+        setIsLoading(false);
+      }
     });
 
     // 2. Listen for Auth State Changes (login, logout, token refresh across tabs)
@@ -55,7 +60,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       (_event, currentSession) => {
         setSession(currentSession);
         setUser(currentSession?.user ?? null);
-        setIsLoading(false);
+        authStateFiredRef.current = true;
+        if (sessionCheckedRef.current && authStateFiredRef.current) {
+          setIsLoading(false);
+        }
       }
     );
 

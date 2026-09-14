@@ -12,11 +12,12 @@ import {
   Utensils, 
   ShieldAlert,
   Wifi,
-  WifiOff
+  WifiOff,
+  ArrowLeft
 } from 'lucide-react';
 import { getLocalStore } from '@/lib/storage/store';
 
-export default function MobileShell({ children }: { children: React.ReactNode }) {
+export default function MobileShell({ children, backHref }: { children: React.ReactNode; backHref?: string }) {
   const pathname = usePathname();
   const [isOffline, setIsOffline] = React.useState(false);
 
@@ -64,6 +65,19 @@ export default function MobileShell({ children }: { children: React.ReactNode })
               <span>Offline Mode • Activity will sync when online</span>
             </div>
             <span className="font-semibold text-[10px] bg-amber-800/80 px-1.5 py-0.5 rounded">Queued</span>
+          </div>
+        )}
+
+        {/* Header / Back Navigation */}
+        {backHref && (
+          <div className="sticky top-0 z-50 bg-[#110D0A]/95 backdrop-blur-md border-b border-[#2A241E]/50 px-4 py-3 flex items-center">
+            <Link
+              href={backHref}
+              className="inline-flex items-center space-x-1.5 text-xs font-semibold text-[#FAF8F5] hover:text-[#E37210] transition-colors"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span>Back</span>
+            </Link>
           </div>
         )}
 

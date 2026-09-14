@@ -23,15 +23,14 @@ import { registerPushSubscription } from '@/lib/notifications/push-client';
 import { TactileButton } from '@/components/motion/MotionPrimitives';
 
 import { useAuth } from '@/components/auth/AuthProvider';
-import { usePWAInstall } from '@/lib/pwa/usePWAInstall';
 import { useTheme } from '@/components/theme/ThemeProvider';
+import InstallSettingsButton from '@/components/mobile/InstallSettingsButton';
 
 export default function ProfilePage() {
   const [store, setStore] = useState(getLocalStore());
   const { currentUser, offlineQueue } = store;
   const { theme, setTheme } = useTheme();
   const { signOut } = useAuth();
-  const { isStandalone, triggerManualPrompt } = usePWAInstall();
 
   const [wakeUpTime, setWakeUpTime] = useState(currentUser.wakeUpTime);
   const [sleepTime, setSleepTime] = useState(currentUser.sleepTime);
@@ -251,26 +250,8 @@ export default function ProfilePage() {
           </p>
         </div>
 
-        {/* Install PWA Option (Browser visitors only) */}
-        {!isStandalone && (
-          <div className="bg-[#16120E] border border-white/[0.08] rounded-2xl p-5 flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 rounded-2xl bg-[#1E1914] flex items-center justify-center text-[#E37210]">
-                <Download className="w-5 h-5" />
-              </div>
-              <div>
-                <h4 className="text-xs font-bold text-white">Install PokketFit App</h4>
-                <p className="text-[11px] text-[#8A8279]">Add to home screen for instant daily access</p>
-              </div>
-            </div>
-            <button
-              onClick={triggerManualPrompt}
-              className="py-2 px-3.5 rounded-xl bg-[#E37210] hover:bg-[#F2801E] text-white text-xs font-bold transition-colors"
-            >
-              Install
-            </button>
-          </div>
-        )}
+        {/* Install PWA Option */}
+        <InstallSettingsButton />
 
         {/* Account & Privacy Compliance (PRD Section 4, 32 & 35) */}
         <div className="bg-[#16120E] border border-[#2A241E] rounded-2xl p-5 space-y-3">

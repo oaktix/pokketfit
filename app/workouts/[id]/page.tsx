@@ -122,7 +122,7 @@ export default function WorkoutPlayerPage({ params }: { params: { id: string } }
   if (!currentExercise) return null;
 
   return (
-    <MobileShell>
+    <MobileShell backHref="/workouts">
       <div className="min-h-[100dvh] flex flex-col justify-between p-4 bg-[#0A0705]">
         {/* Top Header */}
         <div className="flex items-center justify-between pt-2">

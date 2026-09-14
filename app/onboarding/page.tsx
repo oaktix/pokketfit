@@ -134,7 +134,19 @@ export default function OnboardingWizard() {
           return;
         }
 
-        if (authData?.user) {
+        if (authData?.user && !authData?.session) {
+          setSignupError('Account created — please check your email to verify your account before continuing.');
+          setLoading(false);
+          return;
+        }
+
+        if (!authData?.user && !authData?.session) {
+          setSignupError('We could not complete your account setup. Please try again.');
+          setLoading(false);
+          return;
+        }
+
+        if (authData?.user && authData?.session) {
           await supabase.from('profiles').upsert({
             id: authData.user.id,
             name,

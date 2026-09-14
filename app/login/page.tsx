@@ -5,7 +5,8 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { 
   Flame, 
-  ArrowRight, 
+  ArrowRight,
+  ArrowLeft,
   Mail, 
   Lock, 
   AlertCircle, 
@@ -44,59 +45,71 @@ export default function LoginPage() {
         return;
       }
 
-      if (data.user) {
-        // Fetch user profile from Supabase
-        const { data: profile } = await supabase
-          .from('profiles')
-          .select('*')
-          .eq('id', data.user.id)
-          .single();
+      if (data.session) {
+        // Profile loading is secondary — redirect regardless
+        const store = getLocalStore();
+        // Try to load profile if it exists, but don't block on it
+        try {
+          const { data: profile } = await supabase
+            .from('profiles')
+            .select('*')
+            .eq('id', data.user.id)
+            .single();
 
-        if (profile) {
-          const store = getLocalStore();
-          store.currentUser = {
-            ...store.currentUser,
-            id: profile.id,
-            name: profile.name,
-            email: profile.email,
-            role: profile.role || 'user',
-            points: profile.points || 0,
-            currentStreak: profile.current_streak || 0,
-          };
-          saveLocalStore(store);
-
-          if (profile.role === 'admin' || profile.role === 'owner') {
-            router.push('/admin');
-          } else {
-            router.push('/dashboard');
+          if (profile) {
+            store.currentUser = {
+              ...store.currentUser,
+              id: profile.id,
+              name: profile.name,
+              email: profile.email,
+              role: profile.role || 'user',
+              points: profile.points || 0,
+              currentStreak: profile.current_streak || 0,
+            };
           }
-          return;
+          saveLocalStore(store);
+        } catch {
+          // Profile read blocked or missing — proceed anyway
         }
-      }
-    }
 
-    // Graceful offline/local mode fallback when testing before environment keys are set
-    setTimeout(() => {
+        if ((store.currentUser?.role === 'admin' || store.currentUser?.role === 'owner') && data.session) {
+          router.push('/admin');
+        } else {
+          router.push('/dashboard');
+        }
+        setLoading(false);
+        return;
+      } else {
+        // Login succeeded but no session returned (email confirmation ON or token issue)
+        setLoading(false);
+        setErrorMessage('Login successful, but session was not established. Please check your email for verification or try again.');
+        return;
+      }
+    } else {
+      // Supabase not configured — show error instead of fake auth
       setLoading(false);
-      const store = getLocalStore();
-      store.currentUser.email = email;
-      saveLocalStore(store);
-      router.push('/dashboard');
-    }, 600);
+      setErrorMessage('Authentication service unavailable. Please try again later.');
+    }
   };
 
   return (
     <div className="min-h-[100dvh] flex flex-col items-center justify-between bg-[#0A0705] text-[#FAF8F5] px-6 py-10 relative overflow-hidden">
       {/* Header */}
       <div className="w-full flex items-center justify-between z-10 max-w-sm">
-        <Link href="/" className="flex items-center space-x-2">
-          <div className="w-9 h-9 rounded-2xl bg-[#E37210] flex items-center justify-center">
-            <Flame className="w-5 h-5 text-white fill-white" />
-          </div>
-          <div>
-            <span className="font-extrabold text-lg tracking-tight text-white">POKKETFIT</span>
-          </div>
-        </Link>
+        <div className="flex flex-col space-y-2">
+          <Link href="/" className="flex items-center space-x-2">
+            <div className="w-9 h-9 rounded-2xl bg-[#E37210] flex items-center justify-center">
+              <Flame className="w-5 h-5 text-white fill-white" />
+            </div>
+            <div>
+              <span className="font-extrabold text-lg tracking-tight text-white">POKKETFIT</span>
+            </div>
+          </Link>
+          <Link href="/" className="text-xs text-[#8A8279] hover:text-[#E37210] transition-colors flex items-center space-x-1 ml-11">
+            <ArrowLeft className="w-3 h-3" />
+            <span>Back to PokketFit</span>
+          </Link>
+        </div>
 
         <Link
           href="/onboarding"
@@ -166,7 +179,7 @@ export default function LoginPage() {
               <Loader2 className="w-4 h-4 animate-spin text-white" />
             ) : (
               <>
-                <span>Sign In to FitPocket</span>
+                <span>Sign in to PokketFit</span>
                 <ArrowRight className="w-4 h-4" />
               </>
             )}
@@ -185,7 +198,7 @@ export default function LoginPage() {
 
       {/* Footer */}
       <div className="text-center text-[11px] text-[#706760] z-10">
-        FitPocket • Wellness Coaching Tool
+        PokketFit • Wellness Coaching Tool
       </div>
     </div>
   );

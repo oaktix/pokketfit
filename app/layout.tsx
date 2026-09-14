@@ -22,7 +22,7 @@ export const viewport: Viewport = {
 
 import { ThemeProvider } from '@/components/theme/ThemeProvider';
 import { AuthProvider } from '@/components/auth/AuthProvider';
-import PWAInstallModal from '@/components/pwa/PWAInstallModal';
+import InstallPrompt from '@/components/mobile/InstallPrompt';
 
 export default function RootLayout({
   children,
@@ -43,7 +43,7 @@ export default function RootLayout({
         <ThemeProvider>
           <AuthProvider>
             {children}
-            <PWAInstallModal />
+            <InstallPrompt />
           </AuthProvider>
         </ThemeProvider>
       </body>
