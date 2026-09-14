@@ -33,6 +33,12 @@ export default function AdminCmsPage() {
   const [newInstruction, setNewInstruction] = useState('');
   const [newWorks, setNewWorks] = useState('');
 
+  // Video upload state
+  const [videoFile, setVideoFile] = useState<File | null>(null);
+  const [uploadingVideo, setUploadingVideo] = useState(false);
+  const [videoUrl, setVideoUrl] = useState('');
+  const [videoPublicId, setVideoPublicId] = useState('');
+
   // Announcement state
   const [broadcastMessage, setBroadcastMessage] = useState('');
   const [broadcastSent, setBroadcastSent] = useState(false);
@@ -69,6 +75,7 @@ export default function AdminCmsPage() {
       defaultReps: '12',
       defaultRestSec: 60,
       status: 'published',
+      mediaUrl: videoUrl || undefined,
     };
 
     setExercises([created, ...exercises]);
@@ -91,6 +98,8 @@ export default function AdminCmsPage() {
         default_sets: created.defaultSets,
         default_reps: created.defaultReps,
         default_rest_sec: created.defaultRestSec,
+        media_url: created.mediaUrl || null,
+        cloudinary_public_id: videoPublicId || null,
         status: 'published',
       }).then(({ error }) => {
         if (error) console.error('Supabase exercise sync note:', error);
@@ -101,6 +110,42 @@ export default function AdminCmsPage() {
     setNewName('');
     setNewInstruction('');
     setNewWorks('');
+    setVideoFile(null);
+    setVideoUrl('');
+    setVideoPublicId('');
+  };
+
+  const handleUploadVideo = async () => {
+    if (!videoFile) return;
+    setUploadingVideo(true);
+    try {
+      const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+      const uploadPreset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET || 'fitpocket_exercise_videos';
+      if (!cloudName || cloudName.includes('your-cloudinary-cloud-name')) {
+        alert('Cloudinary cloud name is not configured.');
+        setUploadingVideo(false);
+        return;
+      }
+      const formData = new FormData();
+      formData.append('file', videoFile);
+      formData.append('upload_preset', uploadPreset);
+      formData.append('folder', 'fitpocket/exercises');
+      const res = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/video/upload`, {
+        method: 'POST',
+        body: formData,
+      });
+      const data = await res.json();
+      if (data.secure_url) {
+        setVideoUrl(data.secure_url);
+        setVideoPublicId(data.public_id);
+      } else {
+        alert('Video upload failed. Check Cloudinary preset settings.');
+      }
+    } catch (err) {
+      alert('Upload error: ' + (err as Error).message);
+    } finally {
+      setUploadingVideo(false);
+    }
   };
 
   const handleSendBroadcast = (e: React.FormEvent) => {
@@ -451,6 +496,32 @@ export default function AdminCmsPage() {
                   onChange={(e) => setNewInstruction(e.target.value)}
                   className="w-full bg-[#110D0A] border border-[#2A241E] rounded-xl px-3 py-2 text-xs text-white"
                 />
+              </div>
+
+              <div>
+                <label className="text-xs text-[#C7BFB5] block mb-1">Exercise Demonstration Video (MP4/WebM)</label>
+                <div className="flex items-center space-x-2">
+                  <input
+                    type="file"
+                    accept="video/mp4,video/webm,video/quicktime"
+                    onChange={(e) => setVideoFile(e.target.files?.[0] || null)}
+                    className="w-full bg-[#110D0A] border border-[#2A241E] rounded-xl px-3 py-2 text-xs text-white file:mr-2 file:px-2 file:py-1 file:rounded file:border-0 file:text-xs file:bg-[#E37210] file:text-white file:font-bold"
+                  />
+                  <button
+                    type="button"
+                    disabled={!videoFile || uploadingVideo}
+                    onClick={handleUploadVideo}
+                    className="px-3 py-2 rounded-xl bg-[#1E1914] hover:bg-[#2A241E] border border-[#2A241E] text-xs font-bold text-[#E37210] transition-colors disabled:opacity-40"
+                  >
+                    {uploadingVideo ? 'Uploading...' : 'Upload'}
+                  </button>
+                </div>
+                {videoUrl && (
+                  <div className="mt-2 text-xs text-emerald-400 font-semibold flex items-center space-x-1">
+                    <span>✓</span>
+                    <span>Video uploaded: <a href={videoUrl} target="_blank" rel="noopener noreferrer" className="underline hover:text-emerald-300">{videoPublicId || 'Cloudinary asset'}</a></span>
+                  </div>
+                )}
               </div>
 
               <div className="flex space-x-2 pt-2">
