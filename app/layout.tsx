@@ -7,8 +7,8 @@ export const metadata: Metadata = {
     'Personalized daily workouts, Nigerian nutrition meal plans, hydration tracking, fruit intake, and consistent habit coaching.',
   manifest: '/manifest.json',
   icons: {
-    icon: '/favicon.ico',
-    apple: '/icon-192.png',
+    icon: '/flame.svg',
+    apple: '/flame.svg',
   },
 };
 
