@@ -53,9 +53,9 @@ export default function MobileShell({ children, backHref }: { children: React.Re
     pathname.startsWith('/admin');
 
   return (
-    <div className="min-h-[100dvh] flex flex-col items-center justify-start bg-[#0A0705] text-[#FAF8F5]">
+    <div className="min-h-[100dvh] flex flex-col items-center justify-start" style={{ backgroundColor: 'var(--bg-page)', color: 'var(--text-primary)' }}>
       {/* Desktop simulated phone frame wrapper for pristine aesthetics on wide screens */}
-      <div className="w-full max-w-md sm:max-w-[430px] md:max-w-md min-h-[100dvh] flex flex-col relative bg-[#110D0A] shadow-2xl border-x border-[#1E1914]">
+      <div className="w-full max-w-md sm:max-w-[430px] md:max-w-md min-h-[100dvh] flex flex-col relative shadow-2xl" style={{ backgroundColor: 'var(--surface-card)', borderLeft: '1px solid var(--border-subtle)', borderRight: '1px solid var(--border-subtle)' }}>
         
         {/* Offline & Sync Status Banner (PRD Section 28 & 45) */}
         {isOffline && (
@@ -70,10 +70,11 @@ export default function MobileShell({ children, backHref }: { children: React.Re
 
         {/* Header / Back Navigation */}
         {backHref && (
-          <div className="sticky top-0 z-50 bg-[#110D0A]/95 backdrop-blur-md border-b border-[#2A241E]/50 px-3 sm:px-4 py-2 sm:py-3 flex items-center">
+          <div className="sticky top-0 z-50 backdrop-blur-md border-b px-3 sm:px-4 py-2 sm:py-3 flex items-center" style={{ backgroundColor: 'color-mix(in srgb, var(--surface-card) 95%, transparent)', borderBottomColor: 'var(--border-subtle)' }}>
             <Link
               href={backHref}
-              className="inline-flex items-center space-x-1.5 text-xs font-semibold text-[#FAF8F5] hover:text-[#E37210] transition-colors"
+              className="inline-flex items-center space-x-1.5 text-xs font-semibold transition-colors hover:text-[#E37210]"
+              style={{ color: 'var(--text-primary)' }}
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Back</span>
@@ -88,7 +89,7 @@ export default function MobileShell({ children, backHref }: { children: React.Re
 
         {/* Bottom Floating Navigation Bar (Matching Reference Mockups) */}
         {!isExcluded && (
-          <nav className="fixed bottom-0 w-full max-w-md sm:max-w-[430px] md:max-w-md bg-[#16120E]/95 backdrop-blur-md border-t border-[#2A241E] px-3 sm:px-6 py-2 z-40">
+          <nav className="fixed bottom-0 w-full max-w-md sm:max-w-[430px] md:max-w-md backdrop-blur-md border-t px-3 sm:px-6 py-2 z-40" style={{ backgroundColor: 'color-mix(in srgb, var(--surface-card) 95%, transparent)', borderTopColor: 'var(--border-subtle)' }}>
             <div className="flex items-center justify-around">
               {navItems.map((item) => {
                 const Icon = item.icon;
@@ -101,11 +102,13 @@ export default function MobileShell({ children, backHref }: { children: React.Re
                       (item as any).center
                         ? 'relative z-10 -mt-4 scale-110'
                         : 'py-1 px-2'
-                    } ${
-                      isActive
-                        ? (item as any).center ? 'text-[#E37210] font-extrabold' : 'text-[#E37210] font-semibold scale-105'
-                        : 'text-[#8A8279] hover:text-[#C7BFB5]'
                     }`}
+                    style={{
+                      color: isActive
+                        ? '#E37210'
+                        : 'var(--text-secondary)',
+                      fontWeight: isActive && !(item as any).center ? '600' : undefined,
+                    }}
                   >
                     <div className={`${(item as any).center ? 'w-11 h-11 rounded-full bg-gradient-to-tr from-[#E37210] to-[#F2801E] shadow-glow-orange shadow-lg flex items-center justify-center' : ''}`}>
                       <Icon className={`w-5 h-5 ${(item as any).center ? 'text-white fill-white stroke-[2.5]' : isActive ? 'stroke-[2.2]' : 'stroke-[1.8]'}`} />

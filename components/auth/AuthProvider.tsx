@@ -77,7 +77,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     if (isLoading) return;
 
     const isAuth = !!user;
-    const isPublicPage = pathname === '/' || pathname === '/login' || pathname === '/onboarding';
+    const isPublicPage = pathname === '/' || pathname === '/login' || pathname === '/onboarding' || pathname === '/privacy' || pathname === '/terms';
     const isAuthPage = pathname === '/login' || pathname === '/onboarding';
 
     // Rule 1: Authenticated user visits /login or /onboarding -> Redirect to /dashboard

@@ -23,6 +23,7 @@ export const viewport: Viewport = {
 import { ThemeProvider } from '@/components/theme/ThemeProvider';
 import { AuthProvider } from '@/components/auth/AuthProvider';
 import InstallPrompt from '@/components/mobile/InstallPrompt';
+import PushPromptBanner from '@/components/mobile/PushPromptBanner';
 
 export default function RootLayout({
   children,
@@ -43,6 +44,7 @@ export default function RootLayout({
         <ThemeProvider>
           <AuthProvider>
             {children}
+            <PushPromptBanner />
             <InstallPrompt />
           </AuthProvider>
         </ThemeProvider>
