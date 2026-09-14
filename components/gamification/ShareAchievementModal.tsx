@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Share2, Download, Check, X, Flame, Trophy, ShieldCheck, Sparkles } from 'lucide-react';
 import { TactileButton, ScaleIn } from '../motion/MotionPrimitives';
 import { UserProfile, LeagueTier } from '@/lib/types';
+import html2canvas from 'html2canvas';
 
 interface ShareAchievementModalProps {
   isOpen: boolean;
@@ -38,6 +39,24 @@ export default function ShareAchievementModal({
   };
 
   const handleNativeShare = async () => {
+    try {
+      const cardEl = document.getElementById('share-card-preview');
+      if (cardEl && navigator.share) {
+        const canvas = await html2canvas(cardEl as HTMLElement, { scale: 2, backgroundColor: '#0A0705' });
+        const dataUrl = canvas.toDataURL('image/png');
+        const blob = await (await fetch(dataUrl)).blob();
+        const file = new File([blob], 'pokketfit-league-milestone.png', { type: 'image/png' });
+        await navigator.share({
+          title: 'Pokketfit Milestone',
+          text: `I'm currently in ${tier.name} with ${user.currentStreak}-day streak and ${user.points} XP!`,
+          files: [file],
+        });
+        return;
+      }
+    } catch {
+      // Fallback
+    }
+    // Fallback text share
     if (typeof navigator !== 'undefined' && navigator.share) {
       try {
         await navigator.share({
@@ -78,7 +97,7 @@ export default function ShareAchievementModal({
           </div>
 
           {/* Shareable Card Preview (Non-Sensitive: Never reveals weight or BMI - PRD Section 23 & Appendices) */}
-          <div className="mt-4 p-5 rounded-2xl bg-gradient-to-br from-[#1E1914] via-[#16120E] to-[#0A0705] border border-[#E37210]/40 relative overflow-hidden shadow-card-dark">
+          <div id="share-card-preview" className="mt-4 p-5 rounded-2xl bg-gradient-to-br from-[#1E1914] via-[#16120E] to-[#0A0705] border border-[#E37210]/40 relative overflow-hidden shadow-card-dark">
             {/* Ambient Brand Accent Glow */}
             <div className="absolute top-0 right-0 w-32 h-32 bg-[#E37210]/15 rounded-full blur-2xl pointer-events-none" />
 
