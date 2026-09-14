@@ -55,7 +55,7 @@ export default function MobileShell({ children, backHref }: { children: React.Re
   return (
     <div className="min-h-[100dvh] flex flex-col items-center justify-start bg-[#0A0705] text-[#FAF8F5]">
       {/* Desktop simulated phone frame wrapper for pristine aesthetics on wide screens */}
-      <div className="w-full max-w-[430px] min-h-[100dvh] flex flex-col relative bg-[#110D0A] shadow-2xl border-x border-[#1E1914]">
+      <div className="w-full max-w-md sm:max-w-[430px] md:max-w-md min-h-[100dvh] flex flex-col relative bg-[#110D0A] shadow-2xl border-x border-[#1E1914]">
         
         {/* Offline & Sync Status Banner (PRD Section 28 & 45) */}
         {isOffline && (
@@ -70,7 +70,7 @@ export default function MobileShell({ children, backHref }: { children: React.Re
 
         {/* Header / Back Navigation */}
         {backHref && (
-          <div className="sticky top-0 z-50 bg-[#110D0A]/95 backdrop-blur-md border-b border-[#2A241E]/50 px-4 py-3 flex items-center">
+          <div className="sticky top-0 z-50 bg-[#110D0A]/95 backdrop-blur-md border-b border-[#2A241E]/50 px-3 sm:px-4 py-2 sm:py-3 flex items-center">
             <Link
               href={backHref}
               className="inline-flex items-center space-x-1.5 text-xs font-semibold text-[#FAF8F5] hover:text-[#E37210] transition-colors"
@@ -88,7 +88,7 @@ export default function MobileShell({ children, backHref }: { children: React.Re
 
         {/* Bottom Floating Navigation Bar (Matching Reference Mockups) */}
         {!isExcluded && (
-          <nav className="fixed bottom-0 w-full max-w-[430px] bg-[#16120E]/95 backdrop-blur-md border-t border-[#2A241E] px-4 py-2 z-40">
+          <nav className="fixed bottom-0 w-full max-w-md sm:max-w-[430px] md:max-w-md bg-[#16120E]/95 backdrop-blur-md border-t border-[#2A241E] px-3 sm:px-6 py-2 z-40">
             <div className="flex items-center justify-around">
               {navItems.map((item) => {
                 const Icon = item.icon;

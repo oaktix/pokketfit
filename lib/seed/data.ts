@@ -18,6 +18,7 @@ export const SEED_HOME_EXERCISES: Exercise[] = [
     defaultReps: '10-12',
     defaultRestSec: 60,
     status: 'published',
+    mediaUrl: 'https://res.cloudinary.com/wknehnhq/video/upload/q_auto,f_auto,w_720/ex-chair-squats',
   },
   {
     id: 'ex-glute-bridges',
@@ -35,6 +36,7 @@ export const SEED_HOME_EXERCISES: Exercise[] = [
     defaultReps: '12-15',
     defaultRestSec: 60,
     status: 'published',
+    mediaUrl: 'https://res.cloudinary.com/wknehnhq/video/upload/q_auto,f_auto,w_720/ex-glute-bridges',
   },
   {
     id: 'ex-wall-sits',
@@ -66,9 +68,10 @@ export const SEED_HOME_EXERCISES: Exercise[] = [
     fitnessTypes: ['normal_weight', 'overweight'],
     equipmentRequired: [],
     defaultSets: 3,
-    defaultReps: '10/leg',
-    defaultRestSec: 60,
+    defaultReps: '60 sec',
+    defaultRestSec: 45,
     status: 'published',
+    mediaUrl: 'https://res.cloudinary.com/wknehnhq/video/upload/q_auto,f_auto,w_720/ex-march-in-place',
   },
   {
     id: 'ex-calf-raises',
@@ -121,6 +124,7 @@ export const SEED_HOME_EXERCISES: Exercise[] = [
     defaultReps: '10-12',
     defaultRestSec: 60,
     status: 'published',
+    mediaUrl: 'https://res.cloudinary.com/wknehnhq/video/upload/q_auto,f_auto,w_720/ex-wall-pushups',
   },
   {
     id: 'ex-incline-pushups',
@@ -223,6 +227,7 @@ export const SEED_HOME_EXERCISES: Exercise[] = [
     defaultReps: '8-10/side',
     defaultRestSec: 45,
     status: 'published',
+    mediaUrl: 'https://res.cloudinary.com/wknehnhq/video/upload/q_auto,f_auto,w_720/ex-dead-bug',
   },
   {
     id: 'ex-bird-dog',
@@ -239,6 +244,7 @@ export const SEED_HOME_EXERCISES: Exercise[] = [
     defaultReps: '10/side',
     defaultRestSec: 45,
     status: 'published',
+    mediaUrl: 'https://res.cloudinary.com/wknehnhq/video/upload/q_auto,f_auto,w_720/ex-bird-dog',
   },
   {
     id: 'ex-cat-cow',
