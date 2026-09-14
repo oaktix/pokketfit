@@ -36,9 +36,9 @@ export default function MobileShell({ children, backHref }: { children: React.Re
   }, []);
 
   const navItems = [
-    { href: '/dashboard', label: 'Home', icon: Flame },
     { href: '/workouts', label: 'Workouts', icon: Dumbbell },
     { href: '/meals', label: 'Nutrition', icon: Utensils },
+    { href: '/dashboard', label: 'Home', icon: Flame, center: true },
     { href: '/leaderboard', label: 'Leagues', icon: Trophy },
     { href: '/progress', label: 'Progress', icon: LineChart },
     { href: '/profile', label: 'Profile', icon: User },
@@ -97,15 +97,21 @@ export default function MobileShell({ children, backHref }: { children: React.Re
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`flex flex-col items-center justify-center py-1 px-3 rounded-xl transition-all duration-200 ${
+                    className={`flex flex-col items-center justify-center transition-all duration-200 ${
+                      (item as any).center
+                        ? 'relative z-10 -mt-4 scale-110'
+                        : 'py-1 px-2'
+                    } ${
                       isActive
-                        ? 'text-[#E37210] font-semibold scale-105'
+                        ? (item as any).center ? 'text-[#E37210] font-extrabold' : 'text-[#E37210] font-semibold scale-105'
                         : 'text-[#8A8279] hover:text-[#C7BFB5]'
                     }`}
                   >
-                    <Icon className={`w-5 h-5 ${isActive ? 'stroke-[2.2]' : 'stroke-[1.8]'}`} />
-                    <span className="text-[10px] mt-1 tracking-tight">{item.label}</span>
-                    {isActive && (
+                    <div className={`${(item as any).center ? 'w-11 h-11 rounded-full bg-gradient-to-tr from-[#E37210] to-[#F2801E] shadow-glow-orange shadow-lg flex items-center justify-center' : ''}`}>
+                      <Icon className={`w-5 h-5 ${(item as any).center ? 'text-white fill-white stroke-[2.5]' : isActive ? 'stroke-[2.2]' : 'stroke-[1.8]'}`} />
+                    </div>
+                    <span className={`text-[10px] mt-1 tracking-tight ${(item as any).center ? 'font-extrabold' : ''}`}>{item.label}</span>
+                    {isActive && !(item as any).center && (
                       <span className="w-1 h-1 bg-[#E37210] rounded-full mt-0.5" />
                     )}
                   </Link>
