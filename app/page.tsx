@@ -472,7 +472,6 @@ export default function LandingPage() {
           <div className="flex items-center space-x-4">
             <Link href="/login" className="hover:text-white transition-colors">Member Login</Link>
             <Link href="/onboarding" className="hover:text-white transition-colors">Get Started</Link>
-            <Link href="/admin" className="hover:text-white transition-colors">Admin CMS</Link>
           </div>
 
           <div className="flex items-center space-x-1 text-[10px]">
